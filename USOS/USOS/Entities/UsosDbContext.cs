@@ -25,7 +25,7 @@ namespace USOS.Entities
                 .Property(x => x.Index)
                 .IsRequired()
                 .HasMaxLength(6)
-                .
+                
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
