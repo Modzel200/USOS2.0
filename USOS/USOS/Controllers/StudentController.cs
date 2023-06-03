@@ -8,11 +8,11 @@ namespace USOS.Controllers
     [ApiController]
     public class StudentController:ControllerBase
     {
-        private StudentService _studentService;
+        private readonly StudentService _studentService;
 
         public StudentController(IStudentService studentService) 
         { 
-            _studentService = studentService;
+            _studentService = (StudentService?)studentService;
         }
         [HttpGet]
         public ActionResult<IEnumerable<Student>> GetAll()
