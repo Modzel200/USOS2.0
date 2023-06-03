@@ -21,12 +21,6 @@ namespace USOS.Entities
                 .Property(x => x.Surname)
                 .IsRequired()
                 .HasMaxLength(25);
-            modelBuilder.Entity<Student>()
-                .Property(x => x.Index)
-                .IsRequired()
-                .HasMaxLength(6)
-                
-
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
