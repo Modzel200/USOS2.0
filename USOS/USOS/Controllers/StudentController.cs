@@ -8,7 +8,7 @@ namespace USOS.Controllers
     [ApiController]
     public class StudentController:ControllerBase
     {
-        private StudentService _studentService;
+        private IStudentService _studentService;
 
         public StudentController(IStudentService studentService) 
         { 
