@@ -13,7 +13,7 @@ namespace USOS.Controllers
 
         public StudentController(IStudentService studentService) 
         { 
-            _studentService = (StudentService?)studentService;
+            _studentService = studentService;
         }
         [HttpGet]
         public ActionResult<IEnumerable<Student>> GetAll()
