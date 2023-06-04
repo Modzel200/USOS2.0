@@ -36,8 +36,8 @@ namespace USOS.Services
             {
                 Name = lecturer.Name,
                 Surname = lecturer.Surname,
-                AcademicTitle = lecturer.AcademicTitle,
-                MajorSubject = lecturer.MajorSubject
+                AcademicTitle = (Enums.Title)lecturer.AcademicTitle,
+                MajorSubject = (Enums.Major)lecturer.MajorSubject
             };
             _dbContext.Lecturers.Add(lecturerToBeAdded);
             _dbContext.SaveChanges();
@@ -56,7 +56,7 @@ namespace USOS.Services
             if (lecturerToUpdate is null) return false;
             lecturerToUpdate.Name = lecturer.Name;
             lecturerToUpdate.Surname = lecturer.Surname;
-            lecturerToUpdate.MajorSubject = lecturer.MajorSubject;
+            lecturerToUpdate.MajorSubject = (Enums.Major)lecturer.MajorSubject;
             _dbContext.Lecturers.Update(lecturerToUpdate);
             _dbContext.SaveChanges();
             return true;

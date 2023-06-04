@@ -38,7 +38,7 @@ namespace USOS.Services
                 Surname = student.Surname,
                 Age = student.Age,
                 Index = student.Index,
-                MajorSubject = student.MajorSubject,
+                MajorSubject = (Enums.Major)student.MajorSubject,
             };
             _dbContext.Students.Add(studentToBeAdded);
             _dbContext.SaveChanges();
@@ -57,7 +57,7 @@ namespace USOS.Services
             if (studentToUpdate is null) return false;
             studentToUpdate.Name = student.Name;
             studentToUpdate.Surname = student.Surname;
-            studentToUpdate.MajorSubject = student.MajorSubject;
+            studentToUpdate.MajorSubject = (Enums.Major)student.MajorSubject;
             _dbContext.Students.Update(studentToUpdate);
             _dbContext.SaveChanges();
             return true;

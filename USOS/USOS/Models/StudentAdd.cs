@@ -13,6 +13,7 @@ namespace USOS.Models
         public int Index { get; set; }
         [Required(ErrorMessage = "Age is required"), Range(18, 90, ErrorMessage = "Age must be between 18 and 90"), DataType(DataType.Currency, ErrorMessage = "Only numbers are allowed")]
         public int Age { get; set; }
-        public Major MajorSubject { get; set; }
+        [Required(ErrorMessage = "Major Subject is required"), DataType(DataType.Currency, ErrorMessage = "Only numbers are allowed"), Range(0,3,ErrorMessage ="Major Subject must be between 0 and 3")]
+        public int MajorSubject { get; set; }
     }
 }

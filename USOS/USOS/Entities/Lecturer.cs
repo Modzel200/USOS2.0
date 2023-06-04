@@ -13,6 +13,7 @@ namespace USOS.Entities
         public string Surname { get; set; }
         [Required(ErrorMessage = "Title is required"), DataType(DataType.Currency)]
         public Title AcademicTitle { get; set; }
+        [Required(ErrorMessage = "Major subject is required")]
         public Major MajorSubject { get; set; }
     }
 }

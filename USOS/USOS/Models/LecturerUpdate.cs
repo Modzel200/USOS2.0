@@ -10,6 +10,7 @@ namespace USOS.Models
         public string Surname { get; set; }
         [Required(ErrorMessage = "Title is required"), DataType(DataType.Currency)]
         public Title AcademicTitle { get; set; }
-        public Major MajorSubject { get; set; }
+        [Required(ErrorMessage = "Major Subject is required"), DataType(DataType.Currency, ErrorMessage = "Only numbers are allowed"), Range(0, 3, ErrorMessage = "Major Subject must be between 0 and 3")]
+        public int MajorSubject { get; set; }
     }
 }
