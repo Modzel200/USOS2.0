@@ -9,6 +9,5 @@ namespace USOS.Entities
         public string Name { get; set; }
         public string ShortDesc { get; set; }
         public int Semester { get; set; }
-        public Major MajorSubject { get; set; }
     }
 }

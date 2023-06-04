@@ -21,6 +21,12 @@ namespace USOS.Controllers
             var student = _studentService.GetAll();
             return Ok(student);
         }
+        [HttpGet("{index}")]
+        public ActionResult<Student> GetByIndex([FromRoute] int index)
+        {
+            var student = _studentService.GetByIndex(index);
+            return Ok(student);
+        }
         [HttpPost]
         public ActionResult AddStudent([FromBody]Student student)
         {
@@ -29,6 +35,12 @@ namespace USOS.Controllers
                 return BadRequest(ModelState);
             }
             _studentService.Add(student);
+            return Ok();
+        }
+        [HttpDelete]
+        public ActionResult DelStudent([FromRoute] int index)
+        {
+            _studentService.Del(index);
             return Ok();
         }
     }
