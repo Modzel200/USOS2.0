@@ -8,6 +8,7 @@ namespace USOS.Services
         Student GetByIndex(int id);
         int Add(Student student);
         void Del(int index);
+        int Update(int index, Student student);
     }
 
     public class StudentService : IStudentService
@@ -36,12 +37,19 @@ namespace USOS.Services
         }
         public void Del(int index)
         {
-            var student = _dbContext.Students.FirstOrDefault(y => y.Index == index);
-            if(student != null)
-            {
-                _dbContext.Students.Remove(student);
-                _dbContext.SaveChanges();
-            }
+            var student = _dbContext.Students.SingleOrDefault(y => y.Index == index);
+            if (student is null) return;
+            _dbContext.Students.Remove(student);
+            _dbContext.SaveChanges();
+        }
+        public int Update(int index, Student student)
+        {
+            var studentToUpdate = _dbContext.Students.SingleOrDefault(y => y.Index == index);
+            if (studentToUpdate is null) return -1;
+            studentToUpdate = student;
+            _dbContext.Students.Update(studentToUpdate);
+            _dbContext.SaveChanges();
+            return studentToUpdate.Id;
         }
     }
 }
