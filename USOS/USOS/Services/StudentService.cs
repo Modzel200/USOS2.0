@@ -1,4 +1,5 @@
 ﻿using USOS.Entities;
+using USOS.Models;
 
 namespace USOS.Services
 {
@@ -6,7 +7,7 @@ namespace USOS.Services
     {
         IEnumerable<Student> GetAll();
         Student GetByIndex(int id);
-        int Add(Student student);
+        int Add(StudentAdd student);
         void Del(int index);
         bool Update(int index, StudentUpdate student);
     }
@@ -29,11 +30,19 @@ namespace USOS.Services
             var result = _dbContext.Students.SingleOrDefault(x => x.Index == index);
             return result;
         }
-        public int Add(Student student)
+        public int Add(StudentAdd student)
         {
-            _dbContext.Students.Add(student);
+            var studentToBeAdded = new Student()
+            {
+                Name = student.Name,
+                Surname = student.Surname,
+                Age = student.Age,
+                Index = student.Index,
+                MajorSubject = student.MajorSubject,
+            };
+            _dbContext.Students.Add(studentToBeAdded);
             _dbContext.SaveChanges();
-            return student.Id;
+            return studentToBeAdded.Id;
         }
         public void Del(int index)
         {

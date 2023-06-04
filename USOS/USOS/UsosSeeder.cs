@@ -18,6 +18,12 @@ namespace USOS
                     _context.Students.AddRange(students);
                     _context.SaveChanges();
                 }
+                if (!_context.Lecturers.Any())
+                {
+                    var lecturers = GetLecturers();
+                    _context.Lecturers.AddRange(lecturers);
+                    _context.SaveChanges();
+                }
             }
         }
         public UsosSeeder(UsosDbContext context)
@@ -46,6 +52,27 @@ namespace USOS
                 },
             };
             return students;
+        }
+        private IEnumerable<Lecturer> GetLecturers()
+        {
+            var lecturers = new List<Lecturer>()
+            {
+                new Lecturer()
+                {
+                    Name = "Witek",
+                    Surname = "Tacikiewicz",
+                    AcademicTitle = Title.Doctor,
+                    MajorSubject = Major.IT,
+                },
+                new Lecturer()
+                {
+                    Name = "Kamil",
+                    Surname = "Marah",
+                    AcademicTitle = Title.Professor,
+                    MajorSubject = Major.Physics,
+                },
+            };
+            return lecturers;
         }
     }
 }
