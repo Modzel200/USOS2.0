@@ -33,9 +33,51 @@ export class AppComponent implements OnInit{
     );
   }
   onSubmit() {
-    this.studentService.addStudent(this.student).subscribe(
-      response => {
-        console.log(response);
+    if(this.student.id==='')
+    {
+      this.studentService.addStudent(this.student).subscribe(
+        response => {
+          this.getAllStudents();
+          this.student= {
+            id: '',
+            name: '',
+            surname: '',
+            index: '',
+            age: '',
+            majorSubject: ''
+          };
+        }
+      );
+    }else{
+      this.updateStudent(this.student);
+    }
+
+  }
+  deleteStudent(index: string) {
+    this.studentService.delStudent(index)
+    .subscribe(
+      response=>{
+        this.getAllStudents();
+      }
+    );
+  }
+  populateForm(student: Student){
+    this.student = student;
+  }
+  updateStudent(student: Student)
+  {
+    this.studentService.updateStudent(student)
+    .subscribe(
+      response=>{
+        this.getAllStudents()
+        this.student= {
+          id: '',
+          name: '',
+          surname: '',
+          index: '',
+          age: '',
+          majorSubject: ''
+        };
       }
     )
   }

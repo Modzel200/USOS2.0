@@ -31,13 +31,13 @@
     </div>  
     <div class="students-list">
 
-      <div class="student" *ngFor="let stud of students">
+      <div (click)="populateForm(stud)" class="student" *ngFor="let stud of students">
         <div class="student-details">
           <span>{{stud.name}} {{stud.surname}}</span>
           <span>{{stud.index}}</span>
         </div>
         <div class="student-action">
-          <a><i class="fa-solid fa-trash"></i></a>
+          <a (click)="deleteStudent(stud.index)"><i class="fa-solid fa-trash"></i></a>
         </div>
     </div>
   </div>

@@ -20,4 +20,10 @@ export class StudentService {
     student.id = '0';
     return this.http.post<Student>(this.baseUrl, student);
   }
+  delStudent(index: string): Observable<Student>{
+    return this.http.delete<Student>(this.baseUrl+'/'+index);
+  }
+  updateStudent(student: Student): Observable<Student>{
+    return this.http.put<Student>(this.baseUrl+'/'+student.index,student);
+  }
 }
