@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using USOS.Entities;
+using USOS.Models;
 using USOS.Services;
 
 namespace USOS.Controllers
@@ -28,7 +29,7 @@ namespace USOS.Controllers
             return Ok(student);
         }
         [HttpPost]
-        public ActionResult AddStudent([FromBody]Student student)
+        public ActionResult Add([FromBody]StudentAdd student)
         {
             if (!ModelState.IsValid)
             {
@@ -38,17 +39,21 @@ namespace USOS.Controllers
             return Ok();
         }
         [HttpDelete("{index}")]
-        public ActionResult DelStudent([FromRoute] int index)
+        public ActionResult Del([FromRoute] int index)
         {
             _studentService.Del(index);
             return Ok();
         }
-        [HttpPatch("{index}")]
-        public ActionResult UpdateStudent([FromRoute] int index, [FromBody]Student student)
+        [HttpPut("{index}")]
+        public ActionResult Update([FromRoute] int index, [FromBody]StudentUpdate student)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
             var result = _studentService.Update(index, student);
-            if(result == -1) return BadRequest(result);
-            return Ok();
+            if(result) return NoContent();
+            return NotFound();
         }
     }
 }

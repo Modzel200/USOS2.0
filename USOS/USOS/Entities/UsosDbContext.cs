@@ -7,6 +7,8 @@ namespace USOS.Entities
         private string _ConnectionString = "Server=(localdb)\\MSSQLLocalDB;Database=USOSDb;Trusted_Connection=True;";
         public DbSet<Lecturer> Lecturers { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<MajorSubject> MajorSubjects { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
         }

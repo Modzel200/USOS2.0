@@ -1,4 +1,5 @@
 ﻿using USOS.Entities;
+using USOS.Models;
 
 namespace USOS.Services
 {
@@ -6,9 +7,9 @@ namespace USOS.Services
     {
         IEnumerable<Student> GetAll();
         Student GetByIndex(int id);
-        int Add(Student student);
+        int Add(StudentAdd student);
         void Del(int index);
-        int Update(int index, Student student);
+        bool Update(int index, StudentUpdate student);
     }
 
     public class StudentService : IStudentService
@@ -29,11 +30,19 @@ namespace USOS.Services
             var result = _dbContext.Students.SingleOrDefault(x => x.Index == index);
             return result;
         }
-        public int Add(Student student)
+        public int Add(StudentAdd student)
         {
-            _dbContext.Students.Add(student);
+            var studentToBeAdded = new Student()
+            {
+                Name = student.Name,
+                Surname = student.Surname,
+                Age = student.Age,
+                Index = student.Index,
+                MajorSubject = (Enums.Major)student.MajorSubject,
+            };
+            _dbContext.Students.Add(studentToBeAdded);
             _dbContext.SaveChanges();
-            return student.Id;
+            return studentToBeAdded.Id;
         }
         public void Del(int index)
         {
@@ -42,14 +51,16 @@ namespace USOS.Services
             _dbContext.Students.Remove(student);
             _dbContext.SaveChanges();
         }
-        public int Update(int index, Student student)
+        public bool Update(int index, StudentUpdate student)
         {
             var studentToUpdate = _dbContext.Students.SingleOrDefault(y => y.Index == index);
-            if (studentToUpdate is null) return -1;
-            studentToUpdate = student;
+            if (studentToUpdate is null) return false;
+            studentToUpdate.Name = student.Name;
+            studentToUpdate.Surname = student.Surname;
+            studentToUpdate.MajorSubject = (Enums.Major)student.MajorSubject;
             _dbContext.Students.Update(studentToUpdate);
             _dbContext.SaveChanges();
-            return studentToUpdate.Id;
+            return true;
         }
     }
 }

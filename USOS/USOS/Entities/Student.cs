@@ -15,6 +15,7 @@ namespace USOS.Entities
         public int Index { get; set;}
         [Required(ErrorMessage = "Age is required"), Range(18,90, ErrorMessage ="Age must be between 18 and 90"), DataType(DataType.Currency, ErrorMessage = "Only numbers are allowed")]
         public int Age { get; set; }
+        [Required(ErrorMessage ="Major subject is required")]
         public Major MajorSubject { get; set; }
 
     }
