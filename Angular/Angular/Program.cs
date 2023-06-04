@@ -1,11 +1,19 @@
+using USOS;
+using USOS.Entities;
+using USOS.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<UsosDbContext>();
+builder.Services.AddScoped<UsosSeeder>();
+builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
-
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<UsosSeeder>();
+seeder.Seed();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
