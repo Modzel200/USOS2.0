@@ -8,7 +8,7 @@ namespace USOS.Services
         Student GetByIndex(int id);
         int Add(Student student);
         void Del(int index);
-        int Update(int index, Student student);
+        bool Update(int index, StudentUpdate student);
     }
 
     public class StudentService : IStudentService
@@ -42,14 +42,16 @@ namespace USOS.Services
             _dbContext.Students.Remove(student);
             _dbContext.SaveChanges();
         }
-        public int Update(int index, Student student)
+        public bool Update(int index, StudentUpdate student)
         {
             var studentToUpdate = _dbContext.Students.SingleOrDefault(y => y.Index == index);
-            if (studentToUpdate is null) return -1;
-            studentToUpdate = student;
+            if (studentToUpdate is null) return false;
+            studentToUpdate.Name = student.Name;
+            studentToUpdate.Surname = student.Surname;
+            studentToUpdate.MajorSubject = student.MajorSubject;
             _dbContext.Students.Update(studentToUpdate);
             _dbContext.SaveChanges();
-            return studentToUpdate.Id;
+            return true;
         }
     }
 }

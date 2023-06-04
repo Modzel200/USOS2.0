@@ -43,12 +43,16 @@ namespace USOS.Controllers
             _studentService.Del(index);
             return Ok();
         }
-        [HttpPatch("{index}")]
-        public ActionResult UpdateStudent([FromRoute] int index, [FromBody]Student student)
+        [HttpPut("{index}")]
+        public ActionResult UpdateStudent([FromRoute] int index, [FromBody]StudentUpdate student)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
             var result = _studentService.Update(index, student);
-            if(result == -1) return BadRequest(result);
-            return Ok();
+            if(result) return NoContent();
+            return NotFound();
         }
     }
 }
