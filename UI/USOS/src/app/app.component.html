@@ -2,26 +2,26 @@
   <h1>USOS</h1>
   <div class="students-container">
     <div class="add-student">
-      <form>
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="">Name</label>
-          <input type="text" name="Name">
+          <input type="text" name="Name" [(ngModel)]="student.name">
         </div>
         <div class="form-group">
           <label for="">Surname</label>
-          <input type="text" name="Surname">
+          <input type="text" name="Surname" [(ngModel)]="student.surname">
         </div>
         <div class="form-group">
           <label for="">Index</label>
-          <input type="text" name="Index">
+          <input type="text" name="Index" [(ngModel)]="student.index">
         </div>
         <div class="form-group">
           <label for="">Age</label>
-          <input type="text" name="Age">
+          <input type="text" name="Age" [(ngModel)]="student.age">
         </div>
         <div class="form-group">
           <label for="">Major Subject</label>
-          <input type="text" name="MajorSubject">
+          <input type="text" name="MajorSubject" [(ngModel)]="student.majorSubject">
         </div>
         <div class="form-group">
           <button>Zapisz</button>
@@ -30,10 +30,11 @@
       </form>
     </div>  
     <div class="students-list">
-      <div class="student">
+
+      <div class="student" *ngFor="let stud of students">
         <div class="student-details">
-          <span>Mateusz Kwadraciak</span>
-          <span>123456</span>
+          <span>{{stud.name}} {{stud.surname}}</span>
+          <span>{{stud.index}}</span>
         </div>
         <div class="student-action">
           <a><i class="fa-solid fa-trash"></i></a>

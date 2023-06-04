@@ -10,6 +10,14 @@ import { Student } from './models/student.model';
 export class AppComponent implements OnInit{
   title = 'USOS';
   students: Student[] = [];
+  student: Student = {
+    id: '',
+    name: '',
+    surname: '',
+    index: '',
+    age: '',
+    majorSubject: ''
+  }
   constructor(private studentService: StudentService) { 
 
   }
@@ -20,7 +28,15 @@ export class AppComponent implements OnInit{
     this.studentService.getAllStudents().subscribe(
       response => {
         this.students = response;
+        console.log(response);
       }
     );
+  }
+  onSubmit() {
+    this.studentService.addStudent(this.student).subscribe(
+      response => {
+        console.log(response);
+      }
+    )
   }
 }
