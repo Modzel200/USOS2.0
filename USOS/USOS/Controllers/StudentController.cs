@@ -37,10 +37,17 @@ namespace USOS.Controllers
             _studentService.Add(student);
             return Ok();
         }
-        [HttpDelete]
+        [HttpDelete("{index}")]
         public ActionResult DelStudent([FromRoute] int index)
         {
             _studentService.Del(index);
+            return Ok();
+        }
+        [HttpPatch("{index}")]
+        public ActionResult UpdateStudent([FromRoute] int index, [FromBody]Student student)
+        {
+            var result = _studentService.Update(index, student);
+            if(result == -1) return BadRequest(result);
             return Ok();
         }
     }
