@@ -13,7 +13,13 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors((setup)=>
+{
+    setup.AddPolicy("default", (options) =>
+    {
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
 var app = builder.Build();
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<UsosSeeder>();
@@ -24,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("default");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
