@@ -2,10 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser'
 
-const routes: Routes = [];
+import { HomeComponent } from './home';
+import { StudentComponent } from './student';
+import { LecturerComponent } from './lecturer';
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes),BrowserModule],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+const routes: Routes = [
+    { path: '', component: HomeComponent },
+    { path: 'student', component: StudentComponent },
+    { path: 'lecturer', component: LecturerComponent },
+
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
+];
+
+export const appRoutingModule = RouterModule.forRoot(routes);

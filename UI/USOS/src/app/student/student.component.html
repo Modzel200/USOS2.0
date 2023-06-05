@@ -1,0 +1,49 @@
+<div class = "container">
+    <h1>USOS</h1>
+    <div class="students-container">
+      <div class="add-student">
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" name="Name" [(ngModel)]="student.name">
+          </div>
+          <div class="form-group">
+            <label for="">Surname</label>
+            <input type="text" name="Surname" [(ngModel)]="student.surname">
+          </div>
+          <div class="form-group">
+            <label for="">Index</label>
+            <input type="text" name="Index" [(ngModel)]="student.index">
+          </div>
+          <div class="form-group">
+            <label for="">Age</label>
+            <input type="text" name="Age" [(ngModel)]="student.age">
+          </div>
+          <div class="form-group">
+            <label for="">Major Subject</label>
+            <select name="MajorSubject" form="carform" [(ngModel)]="student.majorSubject">
+              <option value="0">IT</option>
+              <option value="1">Math</option>
+              <option value="2">Physics</option>
+              <option value="3">Econometrics</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button>Zapisz</button>
+          </div>
+            
+        </form>
+      </div>  
+      <div class="students-list">
+  
+        <div (click)="populateForm(stud)" class="student" *ngFor="let stud of students">
+          <div class="student-details">
+            <span>{{stud.name}} {{stud.surname}}</span>
+            <span>{{stud.index}}</span>
+          </div>
+          <div class="student-action">
+            <a (click)="deleteStudent(stud.index)"><i class="fa-solid fa-trash"></i></a>
+          </div>
+      </div>
+    </div>
+  </div>
