@@ -3,5 +3,5 @@ export interface Lecturer {
     name: string;
     surname: string;
     title: string;
-    major: string;
+    subjects: string;
 }
