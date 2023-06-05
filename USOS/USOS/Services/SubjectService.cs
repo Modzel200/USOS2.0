@@ -8,8 +8,8 @@ namespace USOS.Services
     {
         int Add(SubjectAddUpdate subject);
         void Del(int id);
-        IEnumerable<Subject> GetAll();
-        Subject GetById(int id);
+        IEnumerable<SubjectGet> GetAll();
+        SubjectGet GetById(int id);
         //bool Update(int id, SubjectAddUpdate subject);
     }
 
@@ -21,20 +21,26 @@ namespace USOS.Services
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<Subject> GetAll()
+        public IEnumerable<SubjectGet> GetAll()
         {
-            var results = _dbContext.Subjects
-                .Include(x => x.LecturerSubject)
-                .Include(y => y.SubjectMajorSubject)
-                .ToList();
+            var results = _dbContext.Subjects.Select(x => new SubjectGet
+            {
+                SubjectID = x.SubjectID,
+                Name = x.Name,
+                ShortDesc = x.ShortDesc,
+                Semester = x.Semester,
+            }).ToList();
             return results;
         }
-        public Subject GetById(int id)
+        public SubjectGet GetById(int id)
         {
-            var result = _dbContext.Subjects
-                .Include(x => x.LecturerSubject)
-                .Include(y => y.SubjectMajorSubject)
-                .SingleOrDefault(x => x.SubjectID == id);
+            var result = _dbContext.Subjects.Select(x => new SubjectGet
+            {
+                SubjectID = x.SubjectID,
+                Name = x.Name,
+                ShortDesc = x.ShortDesc,
+                Semester = x.Semester,
+            }).SingleOrDefault(y => y.SubjectID == id);
             return result;
         }
         public int Add(SubjectAddUpdate subject)
