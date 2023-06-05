@@ -10,50 +10,56 @@ namespace USOS.Controllers
     [ApiController]
     public class StudentController:ControllerBase
     {
-        private readonly IStudentService _studentService;
+        //private readonly IStudentService _studentService;
 
-        public StudentController(IStudentService studentService) 
-        { 
-            _studentService = studentService;
-        }
-        [HttpGet]
-        public ActionResult<IEnumerable<Student>> GetAll()
-        {
-            var student = _studentService.GetAll();
-            return Ok(student);
-        }
-        [HttpGet("{index}")]
-        public ActionResult<Student> GetByIndex([FromRoute] int index)
-        {
-            var student = _studentService.GetByIndex(index);
-            return Ok(student);
-        }
-        [HttpPost]
-        public ActionResult Add([FromBody]StudentAdd student)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            _studentService.Add(student);
-            return Ok();
-        }
-        [HttpDelete("{index}")]
-        public ActionResult Del([FromRoute] int index)
-        {
-            _studentService.Del(index);
-            return Ok();
-        }
-        [HttpPut("{index}")]
-        public ActionResult Update([FromRoute] int index, [FromBody]StudentUpdate student)
-        {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-            var result = _studentService.Update(index, student);
-            if(result) return NoContent();
-            return NotFound();
-        }
+        //public StudentController(IStudentService studentService) 
+        //{ 
+        //    _studentService = studentService;
+        //}
+        //[HttpGet("/names")]
+        //public ActionResult<IEnumerable<Student>> GetAllByNames()
+        //{
+        //    var students = _studentService.GetAll().Select(x => x.Name).ToList();
+        //    return Ok(students);
+        //}
+        //[HttpGet]
+        //public ActionResult<IEnumerable<Student>> GetAll()
+        //{
+        //    var student = _studentService.GetAll();
+        //    return Ok(student);
+        //}
+        //[HttpGet("{index}")]
+        //public ActionResult<Student> GetByIndex([FromRoute] int index)
+        //{
+        //    var student = _studentService.GetByIndex(index);
+        //    return Ok(student);
+        //}
+        //[HttpPost]
+        //public ActionResult Add([FromBody]StudentAdd student)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    _studentService.Add(student);
+        //    return Ok();
+        //}
+        //[HttpDelete("{index}")]
+        //public ActionResult Del([FromRoute] int index)
+        //{
+        //    _studentService.Del(index);
+        //    return Ok();
+        //}
+        //[HttpPut("{index}")]
+        //public ActionResult Update([FromRoute] int index, [FromBody]StudentUpdate student)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return ValidationProblem(ModelState);
+        //    }
+        //    var result = _studentService.Update(index, student);
+        //    if(result) return NoContent();
+        //    return NotFound();
+        //}
     }
 }

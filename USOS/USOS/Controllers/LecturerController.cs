@@ -16,6 +16,12 @@ namespace USOS.Controllers
         {
             _lecturerService = lecturerService;
         }
+        [HttpGet("getfullnames")]
+        public ActionResult<IEnumerable<Lecturer>> GetAllByIDs()
+        {
+            var lecturers = _lecturerService.GetAll().Select(x => x.Name +" "+ x.Surname).ToList();
+            return Ok(lecturers);
+        }
         [HttpGet]
         public ActionResult<IEnumerable<Lecturer>> GetAll()
         {
@@ -29,7 +35,7 @@ namespace USOS.Controllers
             return Ok(lecturer);
         }
         [HttpPost]
-        public ActionResult Add([FromBody] LecturerAdd lecturer)
+        public ActionResult Add([FromBody] LecturerAddUpdate lecturer)
         {
             if (!ModelState.IsValid)
             {
@@ -38,22 +44,22 @@ namespace USOS.Controllers
             _lecturerService.Add(lecturer);
             return Ok();
         }
-        [HttpDelete("{id}")]
-        public ActionResult Del([FromRoute] int id)
-        {
-            _lecturerService.Del(id);
-            return Ok();
-        }
-        [HttpPut("{id}")]
-        public ActionResult Update([FromRoute] int id, [FromBody] LecturerUpdate lecturer)
-        {
-            if (!ModelState.IsValid)
-            {
-                return ValidationProblem(ModelState);
-            }
-            var result = _lecturerService.Update(id, lecturer);
-            if (result) return NoContent();
-            return NotFound();
-        }
+        //[HttpDelete("{id}")]
+        //public ActionResult Del([FromRoute] int id)
+        //{
+        //    _lecturerService.Del(id);
+        //    return Ok();
+        //}
+        //[HttpPut("{id}")]
+        //public ActionResult Update([FromRoute] int id, [FromBody] LecturerUpdate lecturer)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return ValidationProblem(ModelState);
+        //    }
+        //    var result = _lecturerService.Update(id, lecturer);
+        //    if (result) return NoContent();
+        //    return NotFound();
+        //}
     }
 }
