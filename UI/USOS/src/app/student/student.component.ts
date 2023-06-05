@@ -6,6 +6,7 @@ import { Student } from './models/student.model';
 export class StudentComponent implements OnInit{
     title = 'USOS';
   students: Student[] = [];
+  majorSubjects: string[] = [];
   student: Student = {
     id: '',
     name: '',
@@ -76,5 +77,13 @@ export class StudentComponent implements OnInit{
         };
       }
     )
+  }
+  getAllMajorsByString (){
+    this.studentService.getAllMajorsByString().subscribe(
+      response => {
+        this.majorSubjects = response;
+        console.log(response);
+      }
+    );
   }
 }

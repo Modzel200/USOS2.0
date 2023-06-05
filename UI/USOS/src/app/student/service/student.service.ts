@@ -26,4 +26,7 @@ export class StudentService {
   updateStudent(student: Student): Observable<Student>{
     return this.http.put<Student>(this.baseUrl+'/'+student.index,student);
   }
+  getAllMajorsByString(): Observable<string[]>{
+    return this.http.get<string[]>(this.baseUrl+'/majors');
+  }
 }
