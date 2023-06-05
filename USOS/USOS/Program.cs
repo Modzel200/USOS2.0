@@ -11,6 +11,8 @@ builder.Services.AddDbContext<UsosDbContext>();
 builder.Services.AddScoped<UsosSeeder>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ILecturerService, LecturerService>();
+builder.Services.AddScoped<IMajorSubjectService, MajorSubjectService>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
