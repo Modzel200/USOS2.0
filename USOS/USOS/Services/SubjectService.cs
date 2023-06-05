@@ -58,8 +58,14 @@ namespace USOS.Services
         }
         public void Del(int id)
         {
+            
             var subject = _dbContext.Subjects.SingleOrDefault(y => y.SubjectID == id);
             if (subject is null) return;
+            var relations = _dbContext.LecturerSubjects.Where(x => x.SubjectID == id).ToList();
+            foreach (LecturerSubject elem in relations)
+            {
+                _dbContext.LecturerSubjects.Remove(elem);
+            }
             _dbContext.Subjects.Remove(subject);
             _dbContext.SaveChanges();
         }

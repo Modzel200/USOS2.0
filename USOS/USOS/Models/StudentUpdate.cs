@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using USOS.Enums;
 
 namespace USOS.Models
 {

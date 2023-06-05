@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using USOS.Entities;
 using USOS.Models;
 
@@ -10,6 +11,7 @@ namespace USOS.Services
         //void Del(int id);
         IEnumerable<LecturerGet> GetAll();
         LecturerGet GetById(int id);
+        public void ManageSubjects(int id, ICollection<string> Subjects);
         //bool Update(int id, LecturerUpdate lecturer);
     }
 
@@ -38,6 +40,10 @@ namespace USOS.Services
                         Semester = z.Semester,
                     }).ToList(),
                 }).ToList();
+            if (results.IsNullOrEmpty())
+            {
+                return null;
+            }
             return results;
         }
         public LecturerGet GetById(int id)
@@ -57,7 +63,15 @@ namespace USOS.Services
                         Semester = z.Semester,
                     }).ToList(),
                 }).SingleOrDefault(z => z.LecturerID == id);
+            if(result is null)
+            {
+                return null;
+            }
             return result;
+        }
+        public void ManageSubjects(int id, ICollection<string> Subjects)
+        {
+            //todo
         }
         public int Add(LecturerAddUpdate lecturer)
         {
@@ -65,18 +79,18 @@ namespace USOS.Services
             {
                 Name = lecturer.Name,
                 Surname = lecturer.Surname,
-                AcademicTitle = (Enums.Title)lecturer.AcademicTitle,
+                AcademicTitle = lecturer.AcademicTitle,
             };
-            foreach (string elem in lecturer.Subjects)
-            {
-                var subject = _dbContext.Subjects.Where(x => x.Name == elem).FirstOrDefault();
-                var lecturerSubject = new LecturerSubject()
-                {
-                    Subject = subject,
-                    Lecturer = lecturerToBeAdded,
-                };
-                _dbContext.LecturerSubjects.Add(lecturerSubject);
-            }
+            //foreach (string elem in lecturer.Subjects)
+            //{
+            //    var subject = _dbContext.Subjects.Where(x => x.Name == elem).FirstOrDefault();
+            //    var lecturerSubject = new LecturerSubject()
+            //    {
+            //        Subject = subject,
+            //        Lecturer = lecturerToBeAdded,
+            //    };
+            //    _dbContext.LecturerSubjects.Add(lecturerSubject);
+            //} to do przemieszczenia do addsubjecttolecturer
             _dbContext.SaveChanges();
             return lecturerToBeAdded.LecturerID;
         }

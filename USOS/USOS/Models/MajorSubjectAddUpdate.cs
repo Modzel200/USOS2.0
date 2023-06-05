@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using USOS.Entities;
-using USOS.Enums;
 
 namespace USOS.Models
 {

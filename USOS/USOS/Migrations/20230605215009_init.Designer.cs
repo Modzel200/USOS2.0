@@ -11,8 +11,8 @@ using USOS.Entities;
 namespace USOS.Migrations
 {
     [DbContext(typeof(UsosDbContext))]
-    [Migration("20230605184123_s")]
-    partial class s
+    [Migration("20230605215009_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,8 +32,9 @@ namespace USOS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LecturerID"));
 
-                    b.Property<int>("AcademicTitle")
-                        .HasColumnType("int");
+                    b.Property<string>("AcademicTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

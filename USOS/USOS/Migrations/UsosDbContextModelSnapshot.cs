@@ -29,8 +29,9 @@ namespace USOS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LecturerID"));
 
-                    b.Property<int>("AcademicTitle")
-                        .HasColumnType("int");
+                    b.Property<string>("AcademicTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

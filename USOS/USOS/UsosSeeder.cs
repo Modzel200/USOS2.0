@@ -1,7 +1,6 @@
 ﻿using USOS.Entities;
 using System.Net;
 using System.Security.Cryptography;
-using USOS.Enums;
 
 namespace USOS
 {
