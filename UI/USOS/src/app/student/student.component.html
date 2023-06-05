@@ -1,5 +1,5 @@
 <div class = "container">
-    <h1>USOS</h1>
+    <h1>Students</h1>
     <div class="students-container">
       <div class="add-student">
         <form #form="ngForm" (ngSubmit)="onSubmit()">
@@ -21,11 +21,8 @@
           </div>
           <div class="form-group">
             <label for="">Major Subject</label>
-            <select name="MajorSubject" form="carform" [(ngModel)]="student.majorSubject">
-              <option value="0">IT</option>
-              <option value="1">Math</option>
-              <option value="2">Physics</option>
-              <option value="3">Econometrics</option>
+            <select name="MajorSubject" form="carform" **ngFor="let major of majorSubjects"[(ngModel)]="student.majorSubject">
+              <option value={{major}}>{{major}}</option>
             </select>
           </div>
           <div class="form-group">
