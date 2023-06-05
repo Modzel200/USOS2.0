@@ -10,7 +10,7 @@ export class LecturerComponent implements OnInit {
         name: '',
         surname: '',
         title: '',
-        major: ''
+        subjects: ''
     }
     constructor(private lecturerService: LecturerService) {
 
@@ -35,7 +35,7 @@ export class LecturerComponent implements OnInit {
                 name: '',
                 surname: '',
                 title: '',
-                major: ''
+                subjects: ''
               };
             }
           );
