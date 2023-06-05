@@ -1,0 +1,28 @@
+<div class = "container">
+    <h1>Lecturers</h1>
+    <div class="lecturers-container">
+        <div class="add-lecturer">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" [(ngModel)]="lecturer.name">
+                </div>
+                <div class="form-group">
+                    <label for="">Surname</label>
+                    <input type="text" name="Surname" [(ngModel)]="lecturer.surname">
+                </div>
+                <div class="form-group">
+                    <label for="">AcademicTitle</label>
+                    <input type="text" name="AcademicTitle" [(ngModel)]="lecturer.title">
+                </div>
+                <div class="form-group">
+                    <label for="">MajorSubject</label>
+                    <input type="text" name="MajorSubject" [(ngModel)]="lecturer.major">
+                </div>
+                <div class="form-group">
+                    <button>Zapisz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
