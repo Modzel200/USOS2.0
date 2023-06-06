@@ -108,8 +108,14 @@ export class LecturerComponent implements OnInit {
     }
     addToProfSubjects(e: any, subject: string){
         if(e.target.checked){
+            if(!this.profSubjects.includes(subject))
+            {
             this.profSubjects.push(subject);
             console.log(this.profSubjects);
+            }
+            else{
+                this.profSubjects.splice(this.profSubjects.indexOf(subject),1);
+            }
     }
     else{
         this.profSubjects.splice(this.profSubjects.indexOf(subject),1);
@@ -117,11 +123,17 @@ export class LecturerComponent implements OnInit {
     }
     }
     addSubjectsToLecturer(){
-        console.log("test");
         this.lecturerService.addSubjectsToLecturer(this.lecturerInfo.lecturerID,this.profSubjects).subscribe(
             response => {
               console.log(response);
             }
           );
+          this.lecturerInfo = {
+            lecturerID: '',
+            name: '',
+            surname: '',
+            academicTitle: ''
+        }
+        this.profSubjects = [];
     }
 }

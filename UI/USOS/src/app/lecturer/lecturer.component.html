@@ -37,15 +37,18 @@
     </div>
     <div class="lecturers-container2">
     <div class="lecturer-moredetails">
-        <h4>Więcej informacji o pracowniku</h4>
-        <p>{{lecturerInfo.name}} {{lecturerInfo.surname}}</p>
-        <p>{{lecturerInfo.academicTitle}}</p>
+        <h3>Więcej informacji o pracowniku</h3>
+        <br>
+        <p><b>Imię:</b> {{lecturerInfo.name}} <b>Nazwisko:</b> {{lecturerInfo.surname}}</p>
+        <p><b>Tytuł:</b> {{lecturerInfo.academicTitle}}</p>
+        <p><b>Przedmioty:</b></p>
         <div class="lecturer-subjects" *ngFor="let sub of profSubjects">
             <span>{{sub}}</span>
         </div>
+        <p><a (click)="addSubjectsToLecturer()"><button>Zapisz</button></a></p>
     </div>
-    <div>
-        <h4>Przedmioty do wyboru</h4>
+    <div class="lecturer-subjectToChoose">
+        <h3>Przedmioty do wyboru</h3>
         <div class="lecturer-subjects">
             <div class="lecturer-subject" *ngFor="let sub of subjects">
                 <input type="checkbox" id="isChecked" (change)="addToProfSubjects($event, sub)">
@@ -54,7 +57,6 @@
         </div>
     </div>
     <div>
-        <a (click)="addSubjectsToLecturer()"><button>Zapisz przedmioty</button></a>
     </div>
     </div>
 </div>
