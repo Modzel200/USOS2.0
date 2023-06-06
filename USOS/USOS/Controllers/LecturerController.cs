@@ -59,30 +59,25 @@ namespace USOS.Controllers
         [HttpPost("managesubjects")]
         public ActionResult ManageSubjects([FromRoute] int id, [FromBody] ICollection<string> Subjects)
         {
-            var lecturer = _lecturerService.GetById(id);
-            if(lecturer is null)
-            {
-                return NotFound();
-            }
             _lecturerService.ManageSubjects(id, Subjects);
             return Ok();
         }
-        //[HttpDelete("{id}")]
-        //public ActionResult Del([FromRoute] int id)
-        //{
-        //    _lecturerService.Del(id);
-        //    return Ok();
-        //}
-        //[HttpPut("{id}")]
-        //public ActionResult Update([FromRoute] int id, [FromBody] LecturerUpdate lecturer)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return ValidationProblem(ModelState);
-        //    }
-        //    var result = _lecturerService.Update(id, lecturer);
-        //    if (result) return NoContent();
-        //    return NotFound();
-        //}
+        [HttpDelete("{id}")]
+        public ActionResult Del([FromRoute] int id)
+        {
+            _lecturerService.Del(id);
+            return Ok();
+        }
+        [HttpPut("{id}")]
+        public ActionResult Update([FromRoute] int id, [FromBody] LecturerAddUpdate lecturer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
+            var result = _lecturerService.Update(id, lecturer);
+            if (result) return NoContent();
+            return NotFound();
+        }
     }
 }
