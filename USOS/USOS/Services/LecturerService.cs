@@ -78,7 +78,7 @@ namespace USOS.Services
         }
         private void addNewRelation(int id, ICollection<string> Subjects)
         {
-            var lecturer = _dbContext.Lecturers.SingleOrDefault();
+            var lecturer = _dbContext.Lecturers.SingleOrDefault(x => x.LecturerID == id);
             foreach (string elem in Subjects)
             {
                 var subject = _dbContext.Subjects.SingleOrDefault(x => x.Name == elem);

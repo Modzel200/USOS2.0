@@ -16,16 +16,16 @@ namespace USOS.Controllers
         {
             _lecturerService = lecturerService;
         }
-        [HttpGet("getfullnames")]
-        public ActionResult<IEnumerable<Lecturer>> GetAllByIDs()
-        {
-            var lecturers = _lecturerService.GetAll().Select(x => x.Name +" "+ x.Surname).ToList();
-            if (lecturers is null)
-            {
-                return NotFound();
-            }
-            return Ok(lecturers);
-        }
+        //[HttpGet("getfullnames")]
+        //public ActionResult<IEnumerable<Lecturer>> GetAllByIDs()
+        //{
+        //    var lecturers = _lecturerService.GetAll().Select(x => x.Name +" "+ x.Surname).ToList();
+        //    if (lecturers is null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(lecturers);
+        //}
         [HttpGet]
         public ActionResult<IEnumerable<Lecturer>> GetAll()
         {

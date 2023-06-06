@@ -10,7 +10,7 @@ namespace USOS.Services
         void Del(int id);
         IEnumerable<SubjectGet> GetAll();
         SubjectGet GetById(int id);
-        //bool Update(int id, SubjectAddUpdate subject);
+        bool Update(int id, SubjectAddUpdate subject);
     }
 
     public class SubjectService : ISubjectService
@@ -69,28 +69,16 @@ namespace USOS.Services
             _dbContext.Subjects.Remove(subject);
             _dbContext.SaveChanges();
         }
-        //public bool Update(int id, SubjectAddUpdate subject)
-        //{
-        //    List<Lecturer> lecturersToBeReplaced = new List<Lecturer>();
-        //    List<MajorSubject> majorSubjectsToBeReplaced = new List<MajorSubject>();
-        //    foreach (int elem in subject.Lecturers)
-        //    {
-        //        lecturersToBeReplaced.Add(_dbContext.Lecturers.Where(x => x.Id == elem).FirstOrDefault());
-        //    }
-        //    foreach (string elem in subject.MajorSubjects)
-        //    {
-        //        majorSubjectsToBeReplaced.Add(_dbContext.MajorSubjects.Where(x => x.Name == elem).FirstOrDefault());
-        //    }
-        //    var subjectToUpdate = _dbContext.Subjects.SingleOrDefault(y => y.Id == id);
-        //    if (subjectToUpdate is null) return false;
-        //    subjectToUpdate.Name = subject.Name;
-        //    subjectToUpdate.ShortDesc = subject.ShortDesc;
-        //    subjectToUpdate.Semester = subject.Semester;
-        //    subjectToUpdate.Lecturers = lecturersToBeReplaced;
-        //    subjectToUpdate.MajorSubjects = majorSubjectsToBeReplaced;
-        //    _dbContext.Subjects.Update(subjectToUpdate);
-        //    _dbContext.SaveChanges();
-        //    return true;
-        //}
+        public bool Update(int id, SubjectAddUpdate subject)
+        {
+            var subjectToUpdate = _dbContext.Subjects.SingleOrDefault(y => y.SubjectID == id);
+            if (subjectToUpdate is null) return false;
+            subjectToUpdate.Name = subject.Name;
+            subjectToUpdate.ShortDesc = subject.ShortDesc;
+            subjectToUpdate.Semester = subject.Semester;
+            _dbContext.Subjects.Update(subjectToUpdate);
+            _dbContext.SaveChanges();
+            return true;
+        }
     }
 }
