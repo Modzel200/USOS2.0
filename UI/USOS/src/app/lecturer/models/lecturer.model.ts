@@ -1,6 +1,6 @@
 export interface Lecturer {
-    id: string;
+    lecturerID: string;
     name: string;
     surname: string;
-    title: string;
+    academicTitle: string;
 }

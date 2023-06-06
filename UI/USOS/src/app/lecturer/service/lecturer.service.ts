@@ -8,19 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class LecturerService {
     baseUrl = 'https://localhost:7158/api/lecturer';
-
     constructor(private http: HttpClient) { }
     getAllLecturers(): Observable<Lecturer[]> {
         return this.http.get<Lecturer[]>(this.baseUrl);
     }
     addLecturer(lecturer: Lecturer): Observable<Lecturer> {
-        lecturer.id = '0';
+        lecturer.lecturerID = '0';
         return this.http.post<Lecturer>(this.baseUrl, lecturer);
       }
     delLecturer(id: string): Observable<Lecturer>{
         return this.http.delete<Lecturer>(this.baseUrl+'/'+id);
     }
     updateLecturer(lecturer: Lecturer): Observable<Lecturer>{
-        return this.http.put<Lecturer>(this.baseUrl+'/'+lecturer.id,lecturer);
+        return this.http.put<Lecturer>(this.baseUrl+'/'+lecturer.lecturerID,lecturer);
     }
 }

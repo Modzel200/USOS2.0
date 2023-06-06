@@ -6,10 +6,10 @@ export class LecturerComponent implements OnInit {
     title = 'USOS';
     lecturers: Lecturer[] = [];
     lecturer: Lecturer = {
-        id: '',
+        lecturerID: '',
         name: '',
         surname: '',
-        title: ''
+        academicTitle: ''
     }
     constructor(private lecturerService: LecturerService) {
 
@@ -26,16 +26,17 @@ export class LecturerComponent implements OnInit {
         );
     }
     onSubmit() {
-        if(this.lecturer.id==='')
+        if(this.lecturer.lecturerID==='')
         {
         this.lecturerService.addLecturer(this.lecturer).subscribe(
             response => {
+              console.log(response);  
               this.getAllLecturers();
               this.lecturer= {
-                id: '',
+                lecturerID: '',
                 name: '',
                 surname: '',
-                title: ''
+                academicTitle: ''
               };
             }
           );
@@ -53,18 +54,20 @@ export class LecturerComponent implements OnInit {
     }
     populateForm(lecturer: Lecturer){
         this.lecturer = lecturer;
+        console.log(this.lecturer);
         }
         updateLecturer(lecturer: Lecturer)
         {
+        console.log(lecturer);
         this.lecturerService.updateLecturer(lecturer)
         .subscribe(
             response=>{
             this.getAllLecturers()
             this.lecturer= {
-                id: '',
+                lecturerID: '',
                 name: '',
                 surname: '',
-                title: ''
+                academicTitle: ''
               };
               }
             )
