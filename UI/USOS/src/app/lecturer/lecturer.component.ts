@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lecturer } from './models/lecturer.model';
 import { LecturerService } from './service/lecturer.service';
+import { Router } from '@angular/router';
 @Component({ templateUrl: 'lecturer.component.html', styleUrls: ['./lecturer.component.css'] })
 export class LecturerComponent implements OnInit {
     title = 'USOS';
@@ -11,16 +12,33 @@ export class LecturerComponent implements OnInit {
         surname: '',
         academicTitle: ''
     }
-    constructor(private lecturerService: LecturerService) {
+    lecturerInfo: Lecturer = {
+        lecturerID: '',
+        name: '',
+        surname: '',
+        academicTitle: ''
+    }
+    subjects: string[] = [];
+    profSubjects: string[] = [];
+    constructor(private lecturerService: LecturerService, private router: Router) {
 
     }
     ngOnInit(): void {
         this.getAllLecturers();
+        this.getAllSubjects();
     }
     getAllLecturers() {
         this.lecturerService.getAllLecturers().subscribe(
             response => {
                 this.lecturers = response;
+                console.log(response);
+            }
+        );
+    }
+    getAllSubjects() {
+        this.lecturerService.getAllSubjects().subscribe(
+            response => {
+                this.subjects = response;
                 console.log(response);
             }
         );
@@ -71,5 +89,51 @@ export class LecturerComponent implements OnInit {
               };
               }
             )
-        }       
+        }
+    moreInfo(lecturer: Lecturer){
+        this.lecturerInfo.lecturerID=lecturer.lecturerID,
+        this.lecturerInfo.name= lecturer.name,
+        this.lecturerInfo.surname= lecturer.surname,
+        this.lecturerInfo.academicTitle= lecturer.academicTitle;
+        this.getHisSubjects(lecturer.lecturerID);
+        console.log(this.profSubjects);
     }
+    getHisSubjects(lecturerID: string){
+        this.lecturerService.getHisSubjects(lecturerID).subscribe(
+            response => {
+                this.profSubjects = response;
+                console.log(response);
+            }
+        );
+    }
+    addToProfSubjects(e: any, subject: string){
+        if(e.target.checked){
+            if(!this.profSubjects.includes(subject))
+            {
+            this.profSubjects.push(subject);
+            console.log(this.profSubjects);
+            }
+            else{
+                this.profSubjects.splice(this.profSubjects.indexOf(subject),1);
+            }
+    }
+    else{
+        this.profSubjects.splice(this.profSubjects.indexOf(subject),1);
+        console.log(this.profSubjects);
+    }
+    }
+    addSubjectsToLecturer(){
+        this.lecturerService.addSubjectsToLecturer(this.lecturerInfo.lecturerID,this.profSubjects).subscribe(
+            response => {
+              console.log(response);
+            }
+          );
+          this.lecturerInfo = {
+            lecturerID: '',
+            name: '',
+            surname: '',
+            academicTitle: ''
+        }
+        this.profSubjects = [];
+    }
+}

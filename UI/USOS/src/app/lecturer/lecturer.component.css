@@ -77,3 +77,32 @@ form button{
     background-color: #EF5350;
     color: white;
 }
+.lecturer-info{
+    display: block;
+    cursor: pointer;
+    padding: 1em;
+    height: 2em;
+}
+.lecturers-container2{
+    display: flex;
+    width: 100%;
+    padding: 2em;
+    font-size: 1.2em;
+    border: 1px solid lightseagreen;
+}
+.lecturer-moredetails p{
+    padding: 0 0 0.5em 0;
+}
+.lecturer-subjectToChoose{
+    padding: 0em 2em;
+
+}
+button{
+    background-color: black;
+    padding: 0.5em 1em;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
