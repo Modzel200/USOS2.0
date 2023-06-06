@@ -13,7 +13,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">AcademicTitle</label>
-                    <input type="text" name="AcademicTitle" [(ngModel)]="lecturer.title">
+                    <input type="text" name="AcademicTitle" [(ngModel)]="lecturer.academicTitle">
                 </div>
                 <div class="form-group">
                     <button>Zapisz</button>
@@ -21,13 +21,13 @@
             </form>
         </div>
         <div class="lecturers-list">
-            <div (click)="populateForm(lecturer)" class="lecturer" *ngFor="let lec of lecturers">
+            <div (click)="populateForm(lec)" class="lecturer" *ngFor="let lec of lecturers">
               <div class="lecturer-details">
                 <span>{{lec.name}} {{lec.surname}}</span>
-                <span>{{lec.title}}</span>
+                <span>{{lec.academicTitle}}</span>
               </div>
               <div class="lecturer-action">
-                <a (click)="deleteLecturer(lec.id)"><i class="fa-solid fa-trash"></i></a>
+                <a (click)="deleteLecturer(lec.lecturerID)"><i class="fa-solid fa-trash"></i></a>
               </div>
           </div>
         </div>

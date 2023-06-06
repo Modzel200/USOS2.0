@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from './service/student.service';
 import { Student } from './models/student.model';
+import { Login } from '../login/models/login.model';
+import { LoginComponent } from '../login';
 
 @Component({ templateUrl: 'student.component.html', styleUrls: ['./student.component.css'] })
 export class StudentComponent implements OnInit{
@@ -16,7 +18,6 @@ export class StudentComponent implements OnInit{
     majorSubject: ''
   }
   constructor(private studentService: StudentService) { 
-
   }
   ngOnInit(): void {
     this.getAllStudents();
