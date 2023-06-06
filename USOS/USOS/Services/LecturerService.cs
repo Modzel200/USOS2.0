@@ -104,7 +104,7 @@ namespace USOS.Services
                 Surname = lecturer.Surname,
                 AcademicTitle = lecturer.AcademicTitle,
             };
-            _dbContext.Add(lecturerToBeAdded);
+            _dbContext.Lecturers.Add(lecturerToBeAdded);
             _dbContext.SaveChanges();
             return lecturerToBeAdded.LecturerID;
         }
