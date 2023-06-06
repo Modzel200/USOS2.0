@@ -57,7 +57,7 @@ namespace USOS.Controllers
             return Ok();
         }
         [HttpPost("managesubjects")]
-        public ActionResult ManageSubjects([FromBody] int id, [FromBody] ICollection<string> Subjects)
+        public ActionResult ManageSubjects([FromRoute] int id, [FromBody] ICollection<string> Subjects)
         {
             var lecturer = _lecturerService.GetById(id);
             if(lecturer is null)
