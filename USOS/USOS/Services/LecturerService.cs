@@ -13,6 +13,7 @@ namespace USOS.Services
         LecturerGet GetById(int id);
         public bool ManageSubjects(int id, ICollection<string> Subjects);
         bool Update(int id, LecturerAddUpdate lecturer);
+        public ICollection<string> GetHisSubjects(int id);
     }
 
     public class LecturerService : ILecturerService
@@ -22,6 +23,18 @@ namespace USOS.Services
         public LecturerService(UsosDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+        public ICollection<string> GetHisSubjects(int id)
+        {
+            var result = new List<string>();
+            var lecturer = _dbContext.Lecturers.SingleOrDefault(x => x.LecturerID == id);
+            if (lecturer is null) return null;
+            List<int> subjectIDs = _dbContext.LecturerSubjects.Where(x => x.Lecturer == lecturer).Select(y => y.SubjectID).ToList();
+            foreach(int elem in subjectIDs)
+            {
+                result.Add(_dbContext.Subjects.Where(x => x.SubjectID == elem).Select(y => y.Name).SingleOrDefault());
+            }
+            return result;
         }
         public IEnumerable<LecturerGet> GetAll()
         {
