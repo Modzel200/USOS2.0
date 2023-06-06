@@ -9,12 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home';
 import { StudentComponent } from './student';
 import { LecturerComponent } from './lecturer';
+import { LoginComponent } from './login';
+import { SubjectComponent } from './subject';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     StudentComponent,
-    LecturerComponent
+    LecturerComponent,
+    LoginComponent,
+    SubjectComponent
   ],
   imports: [
     FormsModule,

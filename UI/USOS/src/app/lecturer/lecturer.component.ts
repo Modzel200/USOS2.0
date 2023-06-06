@@ -9,8 +9,7 @@ export class LecturerComponent implements OnInit {
         id: '',
         name: '',
         surname: '',
-        title: '',
-        subjects: ''
+        title: ''
     }
     constructor(private lecturerService: LecturerService) {
 
@@ -27,6 +26,8 @@ export class LecturerComponent implements OnInit {
         );
     }
     onSubmit() {
+        if(this.lecturer.id==='')
+        {
         this.lecturerService.addLecturer(this.lecturer).subscribe(
             response => {
               this.getAllLecturers();
@@ -34,10 +35,38 @@ export class LecturerComponent implements OnInit {
                 id: '',
                 name: '',
                 surname: '',
-                title: '',
-                subjects: ''
+                title: ''
               };
             }
           );
+        }else{
+            this.updateLecturer(this.lecturer);
         }
+    }
+    deleteLecturer(id: string) {
+        this.lecturerService.delLecturer(id)
+        .subscribe(
+            response=>{
+            this.getAllLecturers();
+            }
+        );
+    }
+    populateForm(lecturer: Lecturer){
+        this.lecturer = lecturer;
+        }
+        updateLecturer(lecturer: Lecturer)
+        {
+        this.lecturerService.updateLecturer(lecturer)
+        .subscribe(
+            response=>{
+            this.getAllLecturers()
+            this.lecturer= {
+                id: '',
+                name: '',
+                surname: '',
+                title: ''
+              };
+              }
+            )
+        }       
     }
