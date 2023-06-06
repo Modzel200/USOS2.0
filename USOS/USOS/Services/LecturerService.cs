@@ -69,31 +69,33 @@ namespace USOS.Services
             }
             return result;
         }
-        public bool ManageSubjects(int id, ICollection<string> Subjects)
+        private void deleteOldRelation(int id)
         {
-            var relation = _dbContext.LecturerSubjects.Where(x => x.LecturerID == id).ToList();
-            var lecturer = _dbContext.Lecturers.FirstOrDefault(x => x.LecturerID == id);
-            if(lecturer is null)
+            var relationToDelete = _dbContext.LecturerSubjects.Where(x => x.LecturerID == id);
+            if (relationToDelete.IsNullOrEmpty()) return;
+            _dbContext.LecturerSubjects.RemoveRange(relationToDelete);
+            _dbContext.SaveChanges();
+        }
+        private void addNewRelation(int id, ICollection<string> Subjects)
+        {
+            var lecturer = _dbContext.Lecturers.SingleOrDefault();
+            foreach (string elem in Subjects)
             {
-                return false;
-            }
-            foreach(LecturerSubject elem in relation)
-            {
-                if (elem is null) continue;
-                _dbContext.LecturerSubjects.Remove(elem);
-            }
-            foreach(string elem in Subjects)
-            {
-                var subject = _dbContext.Subjects.Where(x => x.Name == elem).FirstOrDefault();
-                if (subject is null) continue;
-                var lecturerSubject = new LecturerSubject()
+                var subject = _dbContext.Subjects.SingleOrDefault(x => x.Name == elem);
+                var relation = new LecturerSubject()
                 {
-                    Subject = subject,
                     Lecturer = lecturer,
+                    Subject = subject,
                 };
-                _dbContext.LecturerSubjects.Add(lecturerSubject);
+                _dbContext.LecturerSubjects.Add(relation);
             }
             _dbContext.SaveChanges();
+        }
+        public bool ManageSubjects(int id, ICollection<string> Subjects)
+        {
+            if (_dbContext.Lecturers.SingleOrDefault(x => x.LecturerID == id) is null || Subjects.IsNullOrEmpty()) return false;
+            deleteOldRelation(id);
+            addNewRelation(id, Subjects);
             return true;
         }
         public int Add(LecturerAddUpdate lecturer)
@@ -111,15 +113,6 @@ namespace USOS.Services
         public void Del(int id)
         {
             var lecturer = _dbContext.Lecturers.SingleOrDefault(y => y.LecturerID == id);
-            var relations = _dbContext.LecturerSubjects.Where(y => y.LecturerID == id).ToList();
-            if (lecturer is null) return;
-            if (!relations.IsNullOrEmpty())
-            {
-                foreach(LecturerSubject elem in relations)
-                {
-                    _dbContext.LecturerSubjects.Remove(elem);
-                }
-            }
             _dbContext.Lecturers.Remove(lecturer);
             _dbContext.SaveChanges();
         }
