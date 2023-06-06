@@ -77,3 +77,14 @@ form button{
     background-color: #EF5350;
     color: white;
 }
+.lecturer-info{
+    display: block;
+    cursor: pointer;
+    padding: 1em;
+    height: 2em;
+}
+.lecturers-container2{
+    display: flex;
+    width: 100%;
+    padding-top: 5em;
+}

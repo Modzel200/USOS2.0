@@ -15,12 +15,12 @@ namespace USOS.Controllers
         {
             _subjectService = subjectService;
         }
-        //[HttpGet("getnames")]
-        //public ActionResult<IEnumerable<Subject>> GetAllByNames()
-        //{
-        //    var subjects = _subjectService.GetAll().Select(x => x.Name).ToList();
-        //    return Ok(subjects);
-        //}
+        [HttpGet("getnames")]
+        public ActionResult<IEnumerable<Subject>> GetAllByNames()
+        {
+           var subjects = _subjectService.GetAll().Select(x => x.Name).ToList();
+           return Ok(subjects);
+        }
         [HttpGet]
         public ActionResult<IEnumerable<Subject>> GetAll()
         {

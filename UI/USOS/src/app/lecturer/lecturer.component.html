@@ -28,8 +28,33 @@
               </div>
               <div class="lecturer-action">
                 <a (click)="deleteLecturer(lec.lecturerID)"><i class="fa-solid fa-trash"></i></a>
+
               </div>
+              <a class="lecturer-info" (click)="moreInfo(lec)"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
           </div>
         </div>
+        
+    </div>
+    <div class="lecturers-container2">
+    <div class="lecturer-moredetails">
+        <h4>Więcej informacji o pracowniku</h4>
+        <p>{{lecturerInfo.name}} {{lecturerInfo.surname}}</p>
+        <p>{{lecturerInfo.academicTitle}}</p>
+        <div class="lecturer-subjects" *ngFor="let sub of profSubjects">
+            <span>{{sub}}</span>
+        </div>
+    </div>
+    <div>
+        <h4>Przedmioty do wyboru</h4>
+        <div class="lecturer-subjects">
+            <div class="lecturer-subject" *ngFor="let sub of subjects">
+                <input type="checkbox" id="isChecked" (change)="addToProfSubjects($event, sub)">
+                <label for={{sub}}> {{sub}}</label><br>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a (click)="addSubjectsToLecturer()"><button>Zapisz przedmioty</button></a>
+    </div>
     </div>
 </div>
