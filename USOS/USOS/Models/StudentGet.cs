@@ -8,6 +8,6 @@ namespace USOS.Models
         public string Surname { get; set; }
         public int Index { get; set; }
         public int Age { get; set; }
-        public virtual MajorSubjectGet majorSubject { get; set; }
+        public MajorSubjectGet majorSubject { get; set; }
     }
 }
