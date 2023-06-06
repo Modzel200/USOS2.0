@@ -17,4 +17,10 @@ export class LecturerService {
         lecturer.id = '0';
         return this.http.post<Lecturer>(this.baseUrl, lecturer);
       }
+    delLecturer(id: string): Observable<Lecturer>{
+        return this.http.delete<Lecturer>(this.baseUrl+'/'+id);
+    }
+    updateLecturer(lecturer: Lecturer): Observable<Lecturer>{
+        return this.http.put<Lecturer>(this.baseUrl+'/'+lecturer.id,lecturer);
+    }
 }

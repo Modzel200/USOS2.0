@@ -1,0 +1,35 @@
+<div class = "container">
+    <h1>Subjects</h1>
+    <div class="subjects-container">
+        <div class="add-subject">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" [(ngModel)]="subject.name">
+                </div>
+                <div class="form-group">
+                    <label for="">ShortDesc</label>
+                    <input type="text" name="ShortDesc" [(ngModel)]="subject.shortDesc">
+                </div>
+                <div class="form-group">
+                    <label for="">Semester</label>
+                    <input type="text" name="Semester" [(ngModel)]="subject.semester">
+                </div>
+                <div class="form-group">
+                    <button>Zapisz</button>
+                </div>
+            </form>
+        </div>
+        <div class="subjects-list">
+            <div (click)="populateForm(subject)" class="subject" *ngFor="let sub of subjects">
+              <div class="subject-details">
+                <span>{{sub.name}}</span>
+                <span>{{sub.semester}}</span>
+              </div>
+              <div class="subject-action">
+                <a (click)="deleteSubject(sub.id)"><i class="fa-solid fa-trash"></i></a>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
