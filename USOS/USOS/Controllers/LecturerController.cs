@@ -16,16 +16,16 @@ namespace USOS.Controllers
         {
             _lecturerService = lecturerService;
         }
-        [HttpGet("getfullnames")]
-        public ActionResult<IEnumerable<Lecturer>> GetAllByIDs()
-        {
-            var lecturers = _lecturerService.GetAll().Select(x => x.Name +" "+ x.Surname).ToList();
-            if (lecturers is null)
-            {
-                return NotFound();
-            }
-            return Ok(lecturers);
-        }
+        //[HttpGet("getfullnames")]
+        //public ActionResult<IEnumerable<Lecturer>> GetAllByIDs()
+        //{
+        //    var lecturers = _lecturerService.GetAll().Select(x => x.Name +" "+ x.Surname).ToList();
+        //    if (lecturers is null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(lecturers);
+        //}
         [HttpGet]
         public ActionResult<IEnumerable<Lecturer>> GetAll()
         {
@@ -56,10 +56,13 @@ namespace USOS.Controllers
             _lecturerService.Add(lecturer);
             return Ok();
         }
-        [HttpPost("managesubjects")]
+        [HttpPost("managesubjects/{id}")]
         public ActionResult ManageSubjects([FromRoute] int id, [FromBody] ICollection<string> Subjects)
         {
-            _lecturerService.ManageSubjects(id, Subjects);
+            if (!_lecturerService.ManageSubjects(id, Subjects))
+            {
+                return BadRequest();
+            }
             return Ok();
         }
         [HttpDelete("{id}")]
