@@ -12,6 +12,7 @@ namespace USOS.Services
         IEnumerable<MajorSubjectGet> GetAll();
         MajorSubjectGet GetById(int id);
         IEnumerable<string> GetAllMajorSubjects();
+        public ICollection<string> GetItsSubjects(int id);
         bool Update(int id, MajorSubjectAddUpdate majorSubject);
     }
 
@@ -22,6 +23,18 @@ namespace USOS.Services
         public MajorSubjectService(UsosDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+        public ICollection<string> GetItsSubjects(int id)
+        {
+            var result = new List<string>();
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id);
+            if (majorSubject is null) return null;
+            List<int> subjectIDs = _dbContext.SubjectMajorSubjects.Where(x => x.MajorSubject == majorSubject).Select(y => y.SubjectID).ToList();
+            foreach (int elem in subjectIDs)
+            {
+                result.Add(_dbContext.Subjects.Where(x => x.SubjectID == elem).Select(y => y.Name).SingleOrDefault());
+            }
+            return result;
         }
         public IEnumerable<MajorSubjectGet> GetAll()
         {

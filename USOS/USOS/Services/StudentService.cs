@@ -93,12 +93,13 @@ namespace USOS.Services
         public bool Update(int index, StudentUpdate student)
         {
             var studentToUpdate = _dbContext.Students.SingleOrDefault(y => y.Index == index);
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
             if (studentToUpdate is null) return false;
             studentToUpdate.Name = student.Name;
             studentToUpdate.Surname = student.Surname;
             studentToUpdate.Age = student.Age;
-            studentToUpdate.majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
-            studentToUpdate.MajorSubjectID = _dbContext.MajorSubjects.Where(x => x.Name == student.MajorSubject).Select(y => y.MajorSubjectID).SingleOrDefault(); //idk czy trzeba
+            studentToUpdate.majorSubject = majorSubject;
+            studentToUpdate.MajorSubjectID = majorSubject.MajorSubjectID;
             _dbContext.Students.Update(studentToUpdate);
             _dbContext.SaveChanges();
             return true;

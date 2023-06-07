@@ -15,6 +15,16 @@ namespace USOS.Controllers
         {
             _majorSubjectService = majorSubjectService;
         }
+        [HttpGet("getitssubjects/{id}")]
+        public ActionResult<IEnumerable<string>> GetItsSubjects([FromRoute] int id)
+        {
+            var result = _majorSubjectService.GetItsSubjects(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
         [HttpGet]
         public ActionResult<IEnumerable<MajorSubject>> GetAll()
         {
