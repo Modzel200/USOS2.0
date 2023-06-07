@@ -14,6 +14,7 @@ namespace USOS.Services
         IEnumerable<string> GetAllMajorSubjects();
         public ICollection<string> GetItsSubjects(int id);
         bool Update(int id, MajorSubjectAddUpdate majorSubject);
+        public bool ManageSubjects(int id, ICollection<string> Subjects);
     }
 
     public class MajorSubjectService : IMajorSubjectService
@@ -77,6 +78,35 @@ namespace USOS.Services
             List<string> majorSubjects = _dbContext.MajorSubjects.Select(x => x.Name).ToList();
             if (majorSubjects.IsNullOrEmpty()) return null;
             return majorSubjects;
+        }
+        private void deleteOldRelation(int id)
+        {
+            var relationToDelete = _dbContext.SubjectMajorSubjects.Where(x => x.MajorSubjectID == id);
+            if (relationToDelete.IsNullOrEmpty()) return;
+            _dbContext.SubjectMajorSubjects.RemoveRange(relationToDelete);
+            _dbContext.SaveChanges();
+        }
+        private void addNewRelation(int id, ICollection<string> Subjects)
+        {
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id);
+            foreach (string elem in Subjects)
+            {
+                var subject = _dbContext.Subjects.SingleOrDefault(x => x.Name == elem);
+                var relation = new SubjectMajorSubject()
+                {
+                    MajorSubject = majorSubject,
+                    Subject = subject,
+                };
+                _dbContext.SubjectMajorSubjects.Add(relation);
+            }
+            _dbContext.SaveChanges();
+        }
+        public bool ManageSubjects(int id, ICollection<string> Subjects)
+        {
+            if (_dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id) is null || Subjects.IsNullOrEmpty()) return false;
+            deleteOldRelation(id);
+            addNewRelation(id, Subjects);
+            return true;
         }
         public int Add(MajorSubjectAddUpdate majorSubject)
         {

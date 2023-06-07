@@ -44,6 +44,15 @@ namespace USOS.Controllers
             var majorSubject = _majorSubjectService.GetById(id);
             return Ok(majorSubject);
         }
+        [HttpPost("managesubjects/{id}")]
+        public ActionResult ManageSubjects([FromRoute] int id, [FromBody] ICollection<string> Subjects)
+        {
+            if (!_majorSubjectService.ManageSubjects(id, Subjects))
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
         [HttpPost]
         public ActionResult Add([FromBody] MajorSubjectAddUpdate majorSubject)
         {
