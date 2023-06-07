@@ -38,4 +38,14 @@ export class LayoutComponent{
         this.router.navigate(['/login']);
       }
   }
+  redirectToMajors()
+  {
+    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+      this.router.navigate(['/majorSubject']);
+      }
+      else{
+        console.log("You are not a admin!");
+        this.router.navigate(['/login']);
+      }
+  }
 }

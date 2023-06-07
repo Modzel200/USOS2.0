@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class StudentService {
 
   baseUrl = 'https://localhost:7158/api/student';
-
+  baseUrlMajor = 'https://localhost:7158/api/majorSubject';
   constructor(private http: HttpClient) { }
 
   // Get all students
@@ -27,6 +27,6 @@ export class StudentService {
     return this.http.put<Student>(this.baseUrl+'/'+student.index,student);
   }
   getAllMajorsByString(): Observable<string[]>{
-    return this.http.get<string[]>(this.baseUrl+'/majors');
+    return this.http.get<string[]>(this.baseUrlMajor+'/getallmajorsubjects');
   }
 }

@@ -21,6 +21,7 @@ export class StudentComponent implements OnInit{
   }
   ngOnInit(): void {
     this.getAllStudents();
+    this.getAllMajorsByString();
   }
   getAllStudents() {
     this.studentService.getAllStudents().subscribe(

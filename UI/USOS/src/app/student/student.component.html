@@ -21,7 +21,7 @@
           </div>
           <div class="form-group">
             <label for="">Major Subject</label>
-            <select name="MajorSubject" form="carform" *ngFor="let major of majorSubjects"[(ngModel)]="student.majorSubject">
+            <select name="MajorSubject" form="carform" *ngFor="let major of majorSubjects" [(ngModel)]="student.majorSubject">
               <option value={{major}}>{{major}}</option>
             </select>
           </div>
