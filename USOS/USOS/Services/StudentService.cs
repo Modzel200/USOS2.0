@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using USOS.Entities;
 using USOS.Models;
 
@@ -39,6 +40,7 @@ namespace USOS.Services
                     Age = x.Age,
                     majorSubject = new MajorSubjectGet
                     {
+                        MajorSubjectID = x.MajorSubjectID,
                         Name = x.majorSubject.Name,
                         ShortDesc = x.majorSubject.ShortDesc,
                         Subjects = null,
@@ -66,17 +68,18 @@ namespace USOS.Services
         }
         public int Add(StudentAdd student)
         {
-            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
-            var majorSubjectId = majorSubject.MajorSubjectID;
             var studentToBeAdded = new Student()
             {
                 Name = student.Name,
                 Surname = student.Surname,
                 Index = student.Index,
                 Age = student.Age,
-                majorSubject = majorSubject,
             };
-            _dbContext.Students.Add(studentToBeAdded);
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
+            studentToBeAdded.majorSubject = majorSubject;
+            studentToBeAdded.MajorSubjectID = majorSubject.MajorSubjectID;
+            if (majorSubject.Students.IsNullOrEmpty()) majorSubject.Students = new List<Student>();
+            majorSubject.Students.Add(studentToBeAdded);
             _dbContext.SaveChanges();
             return studentToBeAdded.StudentID;
         }
