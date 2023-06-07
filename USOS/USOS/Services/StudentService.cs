@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using USOS.Entities;
 using USOS.Models;
 
@@ -39,6 +40,7 @@ namespace USOS.Services
                     Age = x.Age,
                     majorSubject = new MajorSubjectGet
                     {
+                        MajorSubjectID = x.MajorSubjectID,
                         Name = x.majorSubject.Name,
                         ShortDesc = x.majorSubject.ShortDesc,
                         Subjects = null,
@@ -66,17 +68,18 @@ namespace USOS.Services
         }
         public int Add(StudentAdd student)
         {
-            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
-            var majorSubjectId = majorSubject.MajorSubjectID;
             var studentToBeAdded = new Student()
             {
                 Name = student.Name,
                 Surname = student.Surname,
                 Index = student.Index,
                 Age = student.Age,
-                majorSubject = majorSubject,
             };
-            _dbContext.Students.Add(studentToBeAdded);
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
+            studentToBeAdded.majorSubject = majorSubject;
+            studentToBeAdded.MajorSubjectID = majorSubject.MajorSubjectID;
+            if (majorSubject.Students.IsNullOrEmpty()) majorSubject.Students = new List<Student>();
+            majorSubject.Students.Add(studentToBeAdded);
             _dbContext.SaveChanges();
             return studentToBeAdded.StudentID;
         }
@@ -90,12 +93,13 @@ namespace USOS.Services
         public bool Update(int index, StudentUpdate student)
         {
             var studentToUpdate = _dbContext.Students.SingleOrDefault(y => y.Index == index);
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
             if (studentToUpdate is null) return false;
             studentToUpdate.Name = student.Name;
             studentToUpdate.Surname = student.Surname;
             studentToUpdate.Age = student.Age;
-            studentToUpdate.majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.Name == student.MajorSubject);
-            studentToUpdate.MajorSubjectID = _dbContext.MajorSubjects.Where(x => x.Name == student.MajorSubject).Select(y => y.MajorSubjectID).SingleOrDefault(); //idk czy trzeba
+            studentToUpdate.majorSubject = majorSubject;
+            studentToUpdate.MajorSubjectID = majorSubject.MajorSubjectID;
             _dbContext.Students.Update(studentToUpdate);
             _dbContext.SaveChanges();
             return true;

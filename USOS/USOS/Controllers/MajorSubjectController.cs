@@ -15,6 +15,16 @@ namespace USOS.Controllers
         {
             _majorSubjectService = majorSubjectService;
         }
+        [HttpGet("getitssubjects/{id}")]
+        public ActionResult<IEnumerable<string>> GetItsSubjects([FromRoute] int id)
+        {
+            var result = _majorSubjectService.GetItsSubjects(id);
+            if (result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
         [HttpGet]
         public ActionResult<IEnumerable<MajorSubject>> GetAll()
         {
@@ -33,6 +43,15 @@ namespace USOS.Controllers
         {
             var majorSubject = _majorSubjectService.GetById(id);
             return Ok(majorSubject);
+        }
+        [HttpPost("managesubjects/{id}")]
+        public ActionResult ManageSubjects([FromRoute] int id, [FromBody] ICollection<string> Subjects)
+        {
+            if (!_majorSubjectService.ManageSubjects(id, Subjects))
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
         [HttpPost]
         public ActionResult Add([FromBody] MajorSubjectAddUpdate majorSubject)

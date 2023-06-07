@@ -12,7 +12,9 @@ namespace USOS.Services
         IEnumerable<MajorSubjectGet> GetAll();
         MajorSubjectGet GetById(int id);
         IEnumerable<string> GetAllMajorSubjects();
+        public ICollection<string> GetItsSubjects(int id);
         bool Update(int id, MajorSubjectAddUpdate majorSubject);
+        public bool ManageSubjects(int id, ICollection<string> Subjects);
     }
 
     public class MajorSubjectService : IMajorSubjectService
@@ -22,6 +24,18 @@ namespace USOS.Services
         public MajorSubjectService(UsosDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+        public ICollection<string> GetItsSubjects(int id)
+        {
+            var result = new List<string>();
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id);
+            if (majorSubject is null) return null;
+            List<int> subjectIDs = _dbContext.SubjectMajorSubjects.Where(x => x.MajorSubject == majorSubject).Select(y => y.SubjectID).ToList();
+            foreach (int elem in subjectIDs)
+            {
+                result.Add(_dbContext.Subjects.Where(x => x.SubjectID == elem).Select(y => y.Name).SingleOrDefault());
+            }
+            return result;
         }
         public IEnumerable<MajorSubjectGet> GetAll()
         {
@@ -64,6 +78,35 @@ namespace USOS.Services
             List<string> majorSubjects = _dbContext.MajorSubjects.Select(x => x.Name).ToList();
             if (majorSubjects.IsNullOrEmpty()) return null;
             return majorSubjects;
+        }
+        private void deleteOldRelation(int id)
+        {
+            var relationToDelete = _dbContext.SubjectMajorSubjects.Where(x => x.MajorSubjectID == id);
+            if (relationToDelete.IsNullOrEmpty()) return;
+            _dbContext.SubjectMajorSubjects.RemoveRange(relationToDelete);
+            _dbContext.SaveChanges();
+        }
+        private void addNewRelation(int id, ICollection<string> Subjects)
+        {
+            var majorSubject = _dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id);
+            foreach (string elem in Subjects)
+            {
+                var subject = _dbContext.Subjects.SingleOrDefault(x => x.Name == elem);
+                var relation = new SubjectMajorSubject()
+                {
+                    MajorSubject = majorSubject,
+                    Subject = subject,
+                };
+                _dbContext.SubjectMajorSubjects.Add(relation);
+            }
+            _dbContext.SaveChanges();
+        }
+        public bool ManageSubjects(int id, ICollection<string> Subjects)
+        {
+            if (_dbContext.MajorSubjects.SingleOrDefault(x => x.MajorSubjectID == id) is null || Subjects.IsNullOrEmpty()) return false;
+            deleteOldRelation(id);
+            addNewRelation(id, Subjects);
+            return true;
         }
         public int Add(MajorSubjectAddUpdate majorSubject)
         {
