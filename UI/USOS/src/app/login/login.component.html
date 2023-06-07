@@ -4,8 +4,8 @@
     <div class="center">
         <h2>Please Sign In</h2>
         <form #form="ngForm" (ngSubmit)="onSubmit()">
-        <input type="email" placeholder="email" name="login" [(ngModel)]="account.login" />
-        <input type="password" placeholder="password" name="password" [(ngModel)]="account.password"/>
+        <input type="email" placeholder="email" name="login" [(ngModel)]="login" />
+        <input type="password" placeholder="password" name="password" [(ngModel)]="password"/>
         <a><button>Login</button></a>
         </form>
     </div>

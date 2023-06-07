@@ -12,6 +12,7 @@ import { LecturerComponent } from './lecturer';
 import { LoginComponent } from './login';
 import { SubjectComponent } from './subject';
 import { LayoutComponent } from './layout';
+import { majorSubjectComponent } from './majorSubject';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { LayoutComponent } from './layout';
     LecturerComponent,
     LoginComponent,
     SubjectComponent,
-    LayoutComponent
+    LayoutComponent,
+    majorSubjectComponent
   ],
   imports: [
     FormsModule,

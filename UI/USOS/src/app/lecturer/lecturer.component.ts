@@ -25,7 +25,7 @@ export class LecturerComponent implements OnInit {
     }
     ngOnInit(): void {
         this.getAllLecturers();
-        this.getAllSubjects();
+        //this.getAllSubjects();
     }
     getAllLecturers() {
         this.lecturerService.getAllLecturers().subscribe(
@@ -35,11 +35,16 @@ export class LecturerComponent implements OnInit {
             }
         );
     }
-    getAllSubjects() {
+    getAllSubjects(profSubjects: string[]) {
         this.lecturerService.getAllSubjects().subscribe(
             response => {
                 this.subjects = response;
                 console.log(response);
+                for(let sub of this.profSubjects){
+                    if(this.subjects.includes(sub)){
+                        this.subjects.splice(this.subjects.indexOf(sub),1);
+                    }
+                }
             }
         );
     }
@@ -67,7 +72,14 @@ export class LecturerComponent implements OnInit {
         .subscribe(
             response=>{
             this.getAllLecturers();
+            this.lecturer= {
+                lecturerID: '',
+                name: '',
+                surname: '',
+                academicTitle: ''
+              };
             }
+
         );
     }
     populateForm(lecturer: Lecturer){
@@ -103,6 +115,7 @@ export class LecturerComponent implements OnInit {
             response => {
                 this.profSubjects = response;
                 console.log(response);
+                this.getAllSubjects(this.profSubjects);
             }
         );
     }
@@ -135,5 +148,8 @@ export class LecturerComponent implements OnInit {
             academicTitle: ''
         }
         this.profSubjects = [];
+    }
+    deleteSubject(subject: string){
+        this.profSubjects.splice(this.profSubjects.indexOf(subject),1);
     }
 }

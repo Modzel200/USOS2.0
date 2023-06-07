@@ -3,9 +3,9 @@
     <nav class="topnav">
       <div>
           <a class="active" routerLink="/home">Strona główna</a>
-          <a class="nav-item nav-link" routerLink="/student">Studenci</a>
-          <a class="nav-item nav-link" routerLink="/lecturer">Pracownicy naukowi</a>
-          <a class="nav-item nav-link" routerLink="/subject">Przedmioty</a>
+          <a class="nav-item nav-link" (click)="redirectToStudents()">Studenci</a>
+          <a class="nav-item nav-link" (click)="redirectToLecturer()">Pracownicy naukowi</a>
+          <a class="nav-item nav-link" (click)="redirectToSubjects()">Przedmioty</a>
           <a class="klasatestowa" routerLink="/login">Sign in</a>
       </div>
     </nav>

@@ -1,0 +1,56 @@
+<div class = "container">
+    <h1>Major Subjects</h1>
+    <div class="subjects-container">
+        <div class="add-subject">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" name="Name" [(ngModel)]="majorSubject.name">
+                </div>
+                <div class="form-group">
+                    <label for="">Short Description</label>
+                    <input type="text" name="Surname" [(ngModel)]="majorSubject.shortDesc">
+                </div>
+                <div class="form-group">
+                    <button>Zapisz</button>
+                </div>
+            </form>
+        </div>
+        <div class="subjects-list">
+            <div (click)="populateForm(sub)" class="subject" *ngFor="let sub of majorSubjects">
+              <div class="subject-details">
+                <span>{{sub.name}}</span>
+              </div>
+              <div class="subject-action">
+                <a (click)="deleteMajorSubject(sub.majorSubjectID)"><i class="fa-solid fa-trash"></i></a>
+
+              </div>
+              <a class="subject-info" (click)="moreInfo(sub)"><i class="fa-sharp fa-solid fa-circle-info"></i></a>
+          </div>
+        </div>
+        
+    </div>
+    <div class="subjects-container2">
+    <div class="subject-moredetails">
+        <h3>Więcej informacji o przedmiocie</h3>
+        <br>
+        <p><b>Nazwa:</b> {{majorSubjectInfo.name}}</p>
+        <p><b>Przedmioty:</b></p>
+        <div class="subject-subjects" *ngFor="let sub of addedSubjects">
+            <span>{{sub}} <a (click)="deleteSubject(sub)"><i class="fa-solid fa-trash"></i></a></span>
+        </div>
+        <p><a (click)="addSubjectsToSubject()"><button>Zapisz</button></a></p>
+    </div>
+    <div class="subject-subjectToChoose">
+        <h3>Przedmioty do wyboru</h3>
+        <div class="subject-subjects">
+            <div class="subject-subject" *ngFor="let sub of allSubjects">
+                <input type="checkbox" id="isChecked" (change)="addToSubjectSubjects($event, sub)">
+                <label for={{sub}}> {{sub}}</label><br>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
+    </div>
+</div>

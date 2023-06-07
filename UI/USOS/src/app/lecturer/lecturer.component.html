@@ -43,7 +43,7 @@
         <p><b>Tytuł:</b> {{lecturerInfo.academicTitle}}</p>
         <p><b>Przedmioty:</b></p>
         <div class="lecturer-subjects" *ngFor="let sub of profSubjects">
-            <span>{{sub}}</span>
+            <span>{{sub}} <a (click)="deleteSubject(sub)"><i class="fa-solid fa-trash"></i></a></span>
         </div>
         <p><a (click)="addSubjectsToLecturer()"><button>Zapisz</button></a></p>
     </div>
