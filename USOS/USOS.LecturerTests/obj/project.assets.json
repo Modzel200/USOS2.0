@@ -8708,24 +8708,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\": {},
-    "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\frane\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projekt\\USOS2.0\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
+      "projectUniqueName": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
       "projectName": "USOS.LecturerTests",
-      "projectPath": "D:\\projekt\\USOS2.0\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
-      "packagesPath": "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\",
-      "outputPath": "D:\\projekt\\USOS2.0\\USOS2.0\\USOS\\USOS.LecturerTests\\obj\\",
+      "projectPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
+      "packagesPath": "C:\\Users\\frane\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Mafisto CHEF\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\frane\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8739,8 +8734,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\projekt\\USOS2.0\\USOS2.0\\USOS\\USOS\\USOS.csproj": {
-              "projectPath": "D:\\projekt\\USOS2.0\\USOS2.0\\USOS\\USOS\\USOS.csproj"
+            "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS\\USOS.csproj": {
+              "projectPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS\\USOS.csproj"
             }
           }
         }

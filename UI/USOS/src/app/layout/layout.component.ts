@@ -27,7 +27,7 @@ export class LayoutComponent{
   lang2=true;
   constructor(private router: Router, private senderService: SenderService, private cookieService: CookieService) {}
   redirectToStudents(){
-    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+    if(this.senderService.logged==true){
     this.router.navigate(['/student']);
     this.students1=false;
     this.students2=true;
@@ -50,7 +50,7 @@ export class LayoutComponent{
   }
   redirectToLecturer()
   {
-    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+    if(this.senderService.logged==true){
       this.router.navigate(['/lecturer']);
       this.students1=true;
       this.students2=false;
@@ -73,7 +73,7 @@ export class LayoutComponent{
   }
   redirectToSubjects()
   {
-    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+    if(this.senderService.logged==true){
       this.router.navigate(['/subject']);
       this.students1=true;
       this.students2=false;
@@ -96,7 +96,7 @@ export class LayoutComponent{
   }
   redirectToMajors()
   {
-    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+    if(this.senderService.logged==true){
       this.router.navigate(['/majorSubject']);
       this.students1=true;
       this.students2=false;
@@ -135,7 +135,7 @@ export class LayoutComponent{
   }
   redirectToUser()
   {
-    if(this.senderService.login==='admin' || this.senderService.password==='admin'){
+    if(this.senderService.logged==true){
       this.router.navigate(['/user']);
       this.students1=true;
       this.students2=false;

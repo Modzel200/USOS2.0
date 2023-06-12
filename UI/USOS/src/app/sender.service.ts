@@ -7,8 +7,10 @@ export class SenderService {
 
   public login: string;
   public password: string;
+  public logged: boolean;
   constructor() { 
     this.login='';
     this.password='';
+    this.logged=false;
   }
 }
