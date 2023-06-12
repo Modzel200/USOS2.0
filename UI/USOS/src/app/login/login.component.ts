@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Login } from './models/login.model';
 import { SenderService } from '../sender.service';
-@Component({ templateUrl: 'login.component.html', styleUrls: ['./login.component.css'] })
+@Component({ templateUrl: 'login.component.html'})
 @Injectable()
 export class LoginComponent{
     public account: Login;

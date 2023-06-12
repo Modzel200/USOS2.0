@@ -1,14 +1,14 @@
 <div class = "container">
-    <h1>Students</h1>
+    <h1>Studenci</h1>
     <div class="students-container">
       <div class="add-student">
         <form #form="ngForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="">Name</label>
+            <label for="">Imię</label>
             <input type="text" name="Name" [(ngModel)]="student.name">
           </div>
           <div class="form-group">
-            <label for="">Surname</label>
+            <label for="">Nazwisko</label>
             <input type="text" name="Surname" [(ngModel)]="student.surname">
           </div>
           <div class="form-group">
@@ -16,11 +16,11 @@
             <input type="text" name="Index" [(ngModel)]="student.index">
           </div>
           <div class="form-group">
-            <label for="">Age</label>
+            <label for="">Wiek</label>
             <input type="text" name="Age" [(ngModel)]="student.age">
           </div>
           <div class="form-group">
-            <label for="">Major Subject</label>
+            <label for="">Kierunek</label>
             <select name="MajorSubject" form="carform" *ngFor="let major of majorSubjects" [(ngModel)]="student.majorSubject">
               <option value={{major}}>{{major}}</option>
             </select>

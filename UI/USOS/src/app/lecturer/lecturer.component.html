@@ -1,18 +1,18 @@
 <div class = "container">
-    <h1>Lecturers</h1>
+    <h1>Pracownicy naukowi</h1>
     <div class="lecturers-container">
         <div class="add-lecturer">
             <form #form="ngForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="">Name</label>
+                    <label for="">Imię</label>
                     <input type="text" name="Name" [(ngModel)]="lecturer.name">
                 </div>
                 <div class="form-group">
-                    <label for="">Surname</label>
+                    <label for="">Nazwisko</label>
                     <input type="text" name="Surname" [(ngModel)]="lecturer.surname">
                 </div>
                 <div class="form-group">
-                    <label for="">AcademicTitle</label>
+                    <label for="">Tytuł akademicki</label>
                     <input type="text" name="AcademicTitle" [(ngModel)]="lecturer.academicTitle">
                 </div>
                 <div class="form-group">

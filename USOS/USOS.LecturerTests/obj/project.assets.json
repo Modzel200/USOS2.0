@@ -8426,19 +8426,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ACEREK\\.nuget\\packages\\": {}
+    "C:\\Users\\frane\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACEREK\\Documents\\GitHub\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
+      "projectUniqueName": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
       "projectName": "USOS.LecturerTests",
-      "projectPath": "C:\\Users\\ACEREK\\Documents\\GitHub\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
-      "packagesPath": "C:\\Users\\ACEREK\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACEREK\\Documents\\GitHub\\USOS2.0\\USOS\\USOS.LecturerTests\\obj\\",
+      "projectPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\USOS.LecturerTests.csproj",
+      "packagesPath": "C:\\Users\\frane\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS.LecturerTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACEREK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\frane\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8452,8 +8452,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\ACEREK\\Documents\\GitHub\\USOS2.0\\USOS\\USOS\\USOS.csproj": {
-              "projectPath": "C:\\Users\\ACEREK\\Documents\\GitHub\\USOS2.0\\USOS\\USOS\\USOS.csproj"
+            "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS\\USOS.csproj": {
+              "projectPath": "C:\\Users\\frane\\Documents\\Github\\USOS2.0\\USOS\\USOS\\USOS.csproj"
             }
           }
         }
