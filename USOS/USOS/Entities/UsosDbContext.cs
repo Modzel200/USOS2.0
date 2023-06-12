@@ -11,6 +11,7 @@ namespace USOS.Entities
         public DbSet<MajorSubject> MajorSubjects { get; set; }
         public DbSet<SubjectMajorSubject> SubjectMajorSubjects { get; set; }
         public DbSet<LecturerSubject> LecturerSubjects { get; set; }
+        public DbSet<Admin> Admins { get; set;  }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MajorSubject>()

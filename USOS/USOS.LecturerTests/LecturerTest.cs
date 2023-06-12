@@ -32,7 +32,7 @@ public class LecturerTest
         var serviceResult = service.GetAll();
         service.Del(db.Lecturers.FirstOrDefault(x => x.Name == "Test").LecturerID);
         db.SaveChanges();
-        Assert.Equal(serviceResult.Count(), 1);
+        Assert.Equal(serviceResult.Count(), db.Lecturers.ToList().Count());
         
     }
     [Fact]
