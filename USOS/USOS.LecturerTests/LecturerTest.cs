@@ -30,9 +30,10 @@ public class LecturerTest
         db.SaveChanges();
         service = new LecturerService(db);
         var serviceResult = service.GetAll();
+        var expectedResult = db.Lecturers.ToList().Count();
         service.Del(db.Lecturers.FirstOrDefault(x => x.Name == "Test").LecturerID);
         db.SaveChanges();
-        Assert.Equal(serviceResult.Count(), db.Lecturers.ToList().Count());
+        Assert.Equal(serviceResult.Count(), expectedResult);
         
     }
     [Fact]
