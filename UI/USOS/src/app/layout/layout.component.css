@@ -1,4 +1,8 @@
 /* Add a black background color to the top navigation */
+*{
+  margin: 0;
+  padding: 0;
+}
 .topnav {
     background-color: #333;
     overflow: hidden;
@@ -40,4 +44,12 @@
 }
 a{
   cursor: pointer;
+}
+.jumbotron{
+  height: 95vh;
+  background-color: aliceblue;
+
+}
+img{
+  height: 2vh;
 }
