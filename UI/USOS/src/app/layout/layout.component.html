@@ -2,16 +2,26 @@
 <div>
     <nav class="topnav">
       <div>
-          <a class="active" routerLink="/home">Strona główna</a>
-          <a class="nav-item nav-link" (click)="redirectToStudents()">Studenci</a>
-          <a class="nav-item nav-link" (click)="redirectToLecturer()">Pracownicy naukowi</a>
-          <a class="nav-item nav-link" (click)="redirectToSubjects()">Przedmioty</a>
-          <a class="nav-item nav-link" (click)="redirectToMajors()">Kierunki</a>
+          <a class="active" (click)="redirectToHome()" *ngIf="home1">Strona główna</a>
+          <a class="active" (click)="redirectToHome()" *ngIf="home2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Strona główna</a>
+          <a class="nav-item nav-link" (click)="redirectToStudents()" *ngIf="students1">Studenci</a>
+          <a class="nav-item nav-link" (click)="redirectToStudents()" *ngIf="students2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Studenci</a>
+          <a class="nav-item nav-link" (click)="redirectToLecturer()" *ngIf="lecturer1">Pracownicy naukowi</a>
+          <a class="nav-item nav-link" (click)="redirectToLecturer()" *ngIf="lecturer2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Pracownicy naukowi</a>
+          <a class="nav-item nav-link" (click)="redirectToSubjects()" *ngIf="subjects1">Przedmioty</a>
+          <a class="nav-item nav-link" (click)="redirectToSubjects()" *ngIf="subjects2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Przedmioty</a>
+          <a class="nav-item nav-link" (click)="redirectToMajors()" *ngIf="major1">Kierunki</a>
+          <a class="nav-item nav-link" (click)="redirectToMajors()" *ngIf="major2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Kierunki</a>
+          <a class="nav-item nav-link" (click)="redirectToUser()" *ngIf="user1" >Stwórz użytkownika</a>
+          <a class="nav-item nav-link" (click)="redirectToUser()" *ngIf="user2" [ngStyle]="{'text-decoration': 'underline', 'font-weight':'bold'}">Stwórz użytkownika</a>
+          <a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Flag_of_Poland_%28normative%29.svg/250px-Flag_of_Poland_%28normative%29.svg.png" (click)="CookiePolish()" *ngIf="lang"></a>
+          <a><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/240px-Flag_of_the_United_Kingdom_%281-2%29.svg.png" (click)="CookieEnglish()" *ngIf="lang2"></a>
           <a class="klasatestowa" routerLink="/login">Zaloguj się</a>
       </div>
     </nav>
     
     <!-- main content container -->
+
     <div class="jumbotron">
       <div class="container">
           <div class="row">

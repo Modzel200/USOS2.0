@@ -13,6 +13,8 @@ import { LoginComponent } from './login';
 import { SubjectComponent } from './subject';
 import { LayoutComponent } from './layout';
 import { majorSubjectComponent } from './majorSubject';
+import { UserComponent } from './User';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { majorSubjectComponent } from './majorSubject';
     LoginComponent,
     SubjectComponent,
     LayoutComponent,
-    majorSubjectComponent
+    majorSubjectComponent,
+    UserComponent
   ],
   imports: [
     FormsModule,
@@ -31,7 +34,7 @@ import { majorSubjectComponent } from './majorSubject';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

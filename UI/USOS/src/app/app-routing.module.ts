@@ -9,6 +9,7 @@ import { LoginComponent } from './login';
 import { SubjectComponent } from './subject';
 import { LayoutComponent } from './layout';
 import { majorSubjectComponent } from './majorSubject';
+import { UserComponent } from './User';
 const routes: Routes = [
     {
         path: '', 
@@ -18,7 +19,8 @@ const routes: Routes = [
             { path: 'lecturer', component: LecturerComponent },
             { path: 'home', component: HomeComponent},
             { path: 'subject', component: SubjectComponent},
-            { path: 'majorSubject', component: majorSubjectComponent}
+            { path: 'majorSubject', component: majorSubjectComponent},
+            {path: 'user', component: UserComponent}
         ]
     },
     { path: 'login', component: LoginComponent },
