@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using USOS.Entities;
 
@@ -10,9 +11,11 @@ using USOS.Entities;
 namespace USOS.Migrations
 {
     [DbContext(typeof(UsosDbContext))]
-    partial class UsosDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230612133752_xdlolniewnikam")]
+    partial class xdlolniewnikam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +39,8 @@ namespace USOS.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
 
                     b.Property<string>("Username")
                         .IsRequired()
